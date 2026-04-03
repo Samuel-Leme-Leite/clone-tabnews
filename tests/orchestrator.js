@@ -9,9 +9,12 @@ async function waitForAllServices() {
       maxRetryTime: 1000,
     });
 
-    async function fetchStatusPage(bail, tryNumber) {
+    async function fetchStatusPage() {
       const response = await fetch("http://localhost:3000/api/v1/status");
-      const responseBody = await response.json();
+      if(!response.ok){ // response.ok responde true se a resposta estiver entre 200 e 299
+        throw new Error(`Unexpected response status: ${response.status}`); 
+      }
+
     }
   }
 }
